@@ -1,6 +1,37 @@
 #!/usr/bin/python3
 
-COLORS = ["White", "Black", "Green", "Red", "Blue", "Green", "Orange"]
+COLORS = ["White", "Black", "Green", "Red", "Blue", "Orange"]
+
+
+def test_q1():
+    done = set()
+    for flag in make_flags("q1"):
+        assert flag not in done
+        assert flag[0] != flag[1], flag
+        assert flag[1] != flag[2], flag
+        done.add(flag)
+
+
+def test_q2():
+    done = set()
+    for flag in make_flags("q2"):
+        assert flag not in done
+        assert flag[0] != flag[1], flag
+        assert flag[0] != flag[2], flag
+        assert flag[1] != flag[2], flag
+
+
+def make_flags(mode):
+    for first_color in COLORS:
+        second_colors = list(COLORS)
+        second_colors.remove(first_color)
+        for second_color in second_colors:
+            third_colors = list(COLORS)
+            third_colors.remove(second_color)
+            if mode == "q2":
+                third_colors.remove(first_color)
+            for third_color in third_colors:
+                yield (first_color, second_color, third_color)
 
 
 def main():
@@ -25,4 +56,13 @@ def main():
     Thanks in advance, Durk Jan de Bruin
 
     PS: Not all the flags exist in real countries. That is no problem """
-    pass
+    print("Q1")
+    for flag in make_flags("q1"):
+        print(flag)
+    print("Q2")
+    for flag in make_flags("q2"):
+        print(flag)
+
+
+if __name__ == "__main__":
+    main()

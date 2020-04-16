@@ -18,3 +18,17 @@ It would be very nice if you can help us!
 Thanks in advance, Durk Jan de Bruin
 
 PS: Not all the flags exist in real countries. That is no problem 
+
+# Testing
+
+You can run the test with py.test
+
+```
+py.test allflags.py
+```
+
+You can print the flags with
+
+```
+./allflags.py
+```
