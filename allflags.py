@@ -1,5 +1,10 @@
 #!/usr/bin/python3
 
+try:
+    from colors import color
+except ImportError:
+    color = None
+
 COLORS = ["White", "Black", "Green", "Red", "Blue", "Orange"]
 
 
@@ -31,7 +36,10 @@ def make_flags(mode):
             if mode == "q2":
                 third_colors.remove(first_color)
             for third_color in third_colors:
-                yield (first_color, second_color, third_color)
+                if color is None:
+                    yield (first_color, second_color, third_color)
+                else:
+                    yield f"{color(' ',bg=first_color)}{color(' ', bg=second_color)}{color(' ', bg=third_color)} "
 
 
 def main():
@@ -58,10 +66,11 @@ def main():
     PS: Not all the flags exist in real countries. That is no problem """
     print("Q1")
     for flag in make_flags("q1"):
-        print(flag)
-    print("Q2")
+        print(flag, end=" ")
+    print("\n\nQ2")
     for flag in make_flags("q2"):
-        print(flag)
+        print(flag, end=" ")
+    print("")
 
 
 if __name__ == "__main__":

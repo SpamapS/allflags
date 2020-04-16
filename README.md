@@ -27,8 +27,14 @@ You can run the test with py.test
 py.test allflags.py
 ```
 
-You can print the flags with
+You can print the flags as word tuples with:
 
 ```
 ./allflags.py
+```
+
+If you want ansi colors in a terminal use:
+
+```
+pipenv run ./allflags.py
 ```
